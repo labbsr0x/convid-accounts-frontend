@@ -10,11 +10,11 @@ ARG REACT_APP_BACKEND_API_URL
 
 RUN rm -rf build || true
 COPY ./react-app/package.json /usr/src/app
-RUN npm install
+RUN yarn
 
 COPY ./react-app/public /usr/src/app/public
 COPY ./react-app/src /usr/src/app/src
-RUN npm run build
+RUN yarn build
 
 RUN rm -rf /srv/* || true
 RUN ls -la /srv
