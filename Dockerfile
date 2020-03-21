@@ -1,6 +1,7 @@
 FROM node:13-buster-slim as builder
 
 RUN npm install -g create-react-app
+RUN npm install -g react-scripts
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -21,14 +22,13 @@ RUN ls -la /srv
 RUN chmod -R 777 /usr/src/app/build/.
 RUN ls -la /usr/src/app/build/
 
-
 FROM abiosoft/caddy
 
 COPY Caddyfile /etc/Caddyfile
 ENV ACME_AGREE="false"
 
 COPY --from=builder /usr/src/app/build/. /srv
-COPY ./startup.sh /srv
+COPY startup.sh /srv
 RUN chmod +x /srv/startup.sh
 ENTRYPOINT [ "sh" ]
 CMD ["/srv/startup.sh"]
