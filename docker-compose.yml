@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  convid-accounts-frontend:
+    image: convid/convid-accounts-frontend
+    restart: always
+    network_mode: bridge
+    build: .
+      # context: .
+      # args: 
+      #   - NODE_ENV=production
+      #   - REACT_APP_BACKEND_API_URL=BUILD_BACKEND_API_URL
+    environment:
+      - API_URL=http://localhost:3000
+    ports:
+      - 8009:2015
