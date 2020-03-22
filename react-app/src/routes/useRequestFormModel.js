@@ -31,6 +31,7 @@ export default () => {
             method: 'POST',
             headers: requestHeaders,
             body: JSON.stringify({
+                "email": email,
                 "accountId": accountId
             }),
         };
